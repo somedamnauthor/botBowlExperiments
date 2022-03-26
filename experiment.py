@@ -24,7 +24,7 @@ class Node():
 
     def newChild(self):
 
-        print("Expand called")
+        print("\nExpand called")
         print("Available Actions:", self.state.get_available_actions())
 
         #The pop() returns an ActionChoice() object
@@ -46,6 +46,7 @@ class Node():
 
         #Check if action is allowed
         print("Action allowed:",self.state._is_action_allowed(action))
+        print("Is hard-coded TAILS allowed?:", self.state._is_action_allowed(Action(ActionType.TAILS)))
 
         #Perform the action
         next_state = self.state.step(action)
@@ -74,9 +75,11 @@ class bot(botbowl.Agent):
         game_copy.enable_forward_model()
         game_copy.home_agent.human = True
         game_copy.away_agent.human = True
+        print("\nact method called")
+        print("Game Copy Available actions:", game_copy.get_available_actions())
+        print("Is hard-coded TAILS allowed?:", game_copy._is_action_allowed(Action(ActionType.TAILS)))
 
         root_node = Node(state=game_copy)
-        # selectedAction = root_node.best_action()
         selectedChild = root_node.newChild()
 
         print("\nSelected Action:",selectedChild.action.action_type)

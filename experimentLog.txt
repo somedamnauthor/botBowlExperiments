@@ -1,0 +1,49 @@
+act method called
+Game Copy Available actions: [ActionChoice(ActionType.HEADS, len(positions)=0, len(players)=0, len(paths)=0), ActionChoice(ActionType.TAILS, len(positions)=0, len(players)=0, len(paths)=0)]
+Is hard-coded TAILS allowed?: True
+
+Expand called
+Available Actions: [ActionChoice(ActionType.HEADS, len(positions)=0, len(players)=0, len(paths)=0), ActionChoice(ActionType.TAILS, len(positions)=0, len(players)=0, len(paths)=0)]
+Action allowed: False
+Is hard-coded TAILS allowed?: False
+127.0.0.1 - - [26/Mar/2022 17:31:11] "PUT /game/create HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/srishankar/anaconda3/lib/python3.9/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/srishankar/botbowl/botbowl/web/server.py", line 45, in create
+    game = api.new_game(home_team_name=data['game']['home_team_name'], away_team_name=data['game']['away_team_name'], home_agent=homeAgent, away_agent=awayAgent)
+  File "/home/srishankar/botbowl/botbowl/web/api.py", line 31, in new_game
+    game.init()
+  File "/home/srishankar/botbowl/botbowl/core/game.py", line 151, in init
+    self.step(start_action)
+  File "/home/srishankar/botbowl/botbowl/core/game.py", line 191, in step
+    self.action = self._safe_act()
+  File "/home/srishankar/botbowl/botbowl/core/game.py", line 328, in _safe_act
+    action = self.actor.act(self)
+  File "/home/srishankar/botbowl/examples/experiment.py", line 83, in act
+    selectedChild = root_node.newChild()
+  File "/home/srishankar/botbowl/examples/experiment.py", line 52, in newChild
+    next_state = self.state.step(action)
+  File "/home/srishankar/botbowl/botbowl/core/game.py", line 172, in step
+    done = self._one_step(self.action)
+  File "/home/srishankar/botbowl/botbowl/core/game.py", line 404, in _one_step
+    raise InvalidActionError(
+botbowl.core.game.InvalidActionError: Action not allowed {'action_type': 'TAILS', 'position': None, 'player_id': None}
